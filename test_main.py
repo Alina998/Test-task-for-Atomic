@@ -1,7 +1,7 @@
 from main import sort_by_color
 
 
-def run_tests():
+def test_sort_by_color():
     """Функция, которая запускает тесты для функции sort_by_color"""
 
     def assert_equal(actual, expected, test_name):
@@ -106,7 +106,7 @@ def run_tests():
 
 # Запускаем тесты
 if __name__ == "__main__":
-    run_tests()
+    test_sort_by_color()
 
 
 # Реализация решения при помощи unittest:
