@@ -2,6 +2,8 @@ from main import sort_by_color
 
 
 def run_tests():
+    """Функция, которая запускает тесты для функции sort_by_color"""
+
     def assert_equal(actual, expected, test_name):
         if actual == expected:
             print(f"{test_name}: Passed")
@@ -10,39 +12,60 @@ def run_tests():
 
     # Тесты
     try:
+        # Проверка на корректность сортировки
         assert_equal(
             sort_by_color("ССЗСКЗЗЗККСЗССКЗ", "ЗСК"),
             "ЗЗЗЗЗЗССССССКККК",
             "Test Basic Case",
-        )  # Проверка на корректность сортировки
+        )
+
+        # Проверка на корректность сортировки
         assert_equal(
             sort_by_color("КЗСЗКЗСЗКККЗ", "СКЗ"),
             "ССКККККЗЗЗЗЗ",
             "Test Alternate Colors",
-        )  # Проверка на корректность сортировки
+        )
+
+        # Проверка на корректность сортировки
         assert_equal(
             sort_by_color("КЗСЗКЗСЗКККЗ", "СК"),
             "ССКККККЗЗЗЗЗ",
             "Test Alternate Colors 1",
         )
+
+        # Проверка на корректность сортировки
         assert_equal(
             sort_by_color("КЗСЗКЗСЗКККЗ", "С"),
             "ССКЗЗКЗЗКККЗ",
             "Test Alternate Colors 2",
         )
+
+        # Проверка на корректность сортировки
         assert_equal(
             sort_by_color("КЗКЗЗЗК", "СКЗ"), "КККЗЗЗЗ", "Test Alternate Colors 3"
         )
-        assert_equal(
-            sort_by_color("СССС", "С"), "СССС", "Test Single Color"
-        )  # Проверка на корректность сортировки
+
+        # Проверка на корректность сортировки при 1 используемом цвете
+        assert_equal(sort_by_color("СССС", "С"), "СССС", "Test Single Color")
+
+        # Проверка на корректность сортировки при пустом правиле
         assert_equal(
             sort_by_color("КЗСЗКЗСЗКККЗ", ""), "КЗСЗКЗСЗКККЗ", "Test Empty Rule"
         )
+
+        # Проверка на корректность сортировки при пустом наборе объектов
         assert_equal(sort_by_color("", "ЗСК"), "", "Test Empty String")
+
+        # Проверка на корректность сортировки при отсутствии подходящих цветов в наборе
         assert_equal(sort_by_color("КККК", "ЗС"), "КККК", "Test No Matching Colors")
+
+        # Проверка на корректность сортировки в случае если в наборе больше цветов, чем указано в правиле
         assert_equal(sort_by_color("ККЗС", "ЗС"), "ЗСКК", "Test Rule With Extra Colors")
+
+        # Проверка на корректность сортировки, когда правило включает дубликаты
         assert_equal(sort_by_color("КЗС", "ККЗС"), "КЗС", "Test Rule With Duplicates")
+
+        # Проверка на корректность сортировки, когда правило включает дубликаты
         assert_equal(sort_by_color("КЗС", "КЗКС"), "КЗС", "Test Rule With Duplicates 1")
 
         # Проверка на недопустимые цвета
@@ -56,7 +79,7 @@ def run_tests():
                 "Test Invalid Color In Objects",
             )
 
-        # Проверка на недопустимые символы
+        # Проверка на недопустимые символы, пробелы
         try:
             sort_by_color("КЗ С", "ЗСК")
             print("Test Spaces In Objects: Failed (Expected ValueError)")
@@ -81,6 +104,7 @@ def run_tests():
         print(f"An error occurred during testing: {e}")
 
 
+# Запускаем тесты
 if __name__ == "__main__":
     run_tests()
 
