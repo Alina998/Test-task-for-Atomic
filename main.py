@@ -26,13 +26,29 @@ def sort_by_color(objects: str, rule: str):
             "Правило содержит недопустимые цвета. Допустимые цвета: К, З, С."
         )
 
-    # Преобразовываем входную строку в список для сортировки
-    objects_list = list(objects)
+    # Проверка правила на наличие дублирующихся цветов
+    if len(set(rule)) < len(rule):
+        raise ValueError("Цвета в правиле не должны дублироваться.")
 
-    # Упорядочиваем объекты согласно заданному правилу
-    sorted_objects = sorted(
-        objects_list, key=lambda x: rule.index(x) if x in rule else len(rule)
-    )
+    # Сортируем полученный список согласно правилу
+    sorted_objects = []
 
-    # Формируем итоговый результат для вывода
+    # Проходим по каждому цвету в списке правил
+    for color in rule:
+        # Считаем количество объектов каждого цвета из правила
+        colored_objects = objects.count(color)
+        # Добавляем все объекты данного цвета в sorted_objects
+        for i in range(colored_objects):
+            sorted_objects.append(color)
+
+    # Возвращаем результат сортировки объектов
     return "".join(sorted_objects)
+
+
+# Пример вызова функции
+# try:
+#     objects = input("Введите набор объектов: ")
+#     rule = input("Введите правило сортировки: ")
+#     print(sort_by_color(objects, rule))
+# except ValueError as e:
+#     print(e)
